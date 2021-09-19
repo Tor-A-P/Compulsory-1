@@ -49,8 +49,6 @@ int main() {
         case 2:
             PlayGameAI(); // If they entered 2, play a game against an AI that chooses random squares
             break;
-        case 3:
-            // COMING SOON™
         default:
             std::cout << "Something went wrong, please notify the developers!\n";
             EXIT_FAILURE;
@@ -169,31 +167,20 @@ void PlayGame() {
 // Function to check for a winner of the game, it does this by checking if 3 grids in a row (diagonally, vertically, or horizontally) are the same
 bool CheckForWin() {
 
+    // CHeck the 3 horizontals and verticals
+    for (int i{ 0 }; i < rows; i++) {
+        if (Board[i][0] == Board[i][1] && Board[i][1] == Board[i][2]) {
+            return true;
+        }
+        else if (Board[0][i] == Board[1][i] && Board[1][i] == Board[2][i]) {
+            return true;
+        }
+    }
     // Check the 2 diagonals
     if (Board[0][0] == Board[1][1] && Board[1][1] == Board[2][2]) {
         return true;
     }
     else if (Board[2][0] == Board[1][1] && Board[1][1] == Board[0][2]) {
-        return true;
-    }
-    // Check the 3 horizontals
-    else if (Board[0][0] == Board[0][1] && Board[0][1] == Board[0][2]) {
-        return true;
-    }
-    else if (Board[1][0] == Board[1][1] && Board[1][1] == Board[1][2]) {
-        return true;
-    }
-    else if (Board[2][0] == Board[2][1] && Board[2][1] == Board[2][2]) {
-        return true;
-    }
-    // Check the 3 verticals
-    else if (Board[0][0] == Board[1][0] && Board[1][0] == Board[2][0]) {
-        return true;
-    }
-    else if (Board[0][1] == Board[1][1] && Board[1][1] == Board[2][1]) {
-        return true;
-    }
-    else if (Board[0][2] == Board[1][2] && Board[1][2] == Board[2][2]) {
         return true;
     }
     // If none of them are the same, return false as there is no winner yet
